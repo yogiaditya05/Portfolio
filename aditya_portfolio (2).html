@@ -40,23 +40,33 @@
     .cursor {
       width: 6px; height: 6px;
       background: var(--accent);
-      border-radius: 50%;
+      border-radius: 1px;
       position: fixed; top: 0; left: 0;
       pointer-events: none;
       z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: transform 0.1s ease, width 0.2s, height 0.2s, background-color 0.2s;
+      transform: translate(-50%, -50%) rotate(45deg);
+      transition: transform 0.2s ease, width 0.2s, height 0.2s, background-color 0.2s;
+    }
+    .cursor.hovered {
+      transform: translate(-50%, -50%) scale(0) rotate(225deg);
     }
     .cursor-ring {
       width: 26px; height: 26px;
       border: 1.5px solid var(--accent);
-      border-radius: 50%;
+      border-radius: 4px;
       position: fixed; top: 0; left: 0;
       pointer-events: none;
       z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: transform 0.08s ease-out, width 0.2s, height 0.2s, border-color 0.3s, background-color 0.3s;
+      transform: translate(-50%, -50%) rotate(45deg);
+      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), width 0.3s ease, height 0.3s ease, border-color 0.3s, background-color 0.3s;
       opacity: 0.6;
+    }
+    .cursor-ring.hovered {
+      transform: translate(-50%, -50%) rotate(135deg);
+      width: 50px; height: 50px;
+      background: rgba(0, 245, 255, 0.08);
+      border-color: var(--accent);
+      opacity: 0.9;
     }
 
     /* Noise overlay */
@@ -1595,20 +1605,12 @@
     // Hover effect on links and buttons
     document.querySelectorAll('a, button, .btn, .cert-card, .suggestion-chip, #chat-send').forEach(el => {
       el.addEventListener('mouseenter', () => {
-        ring.style.width = '52px';
-        ring.style.height = '52px';
-        ring.style.background = 'rgba(0, 245, 255, 0.08)';
-        ring.style.borderColor = 'var(--accent)';
-        ring.style.opacity = '0.9';
-        cursor.style.transform = 'translate(-50%, -50%) scale(0)';
+        cursor.classList.add('hovered');
+        ring.classList.add('hovered');
       });
       el.addEventListener('mouseleave', () => {
-        ring.style.width = '26px';
-        ring.style.height = '26px';
-        ring.style.background = 'transparent';
-        ring.style.borderColor = 'var(--accent)';
-        ring.style.opacity = '0.6';
-        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+        cursor.classList.remove('hovered');
+        ring.classList.remove('hovered');
       });
     });
 
