@@ -106,6 +106,18 @@
       color: var(--accent);
       letter-spacing: 0.05em;
       text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .logo-svg {
+      width: 28px;
+      height: 28px;
+      filter: drop-shadow(0 0 6px rgba(0, 245, 255, 0.4));
+      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .nav-logo:hover .logo-svg {
+      transform: rotate(60deg) scale(1.08);
     }
     .nav-links { display: flex; gap: 2.2rem; align-items: center; }
     .nav-links a {
@@ -1117,7 +1129,21 @@
 
   <!-- NAVBAR -->
   <nav id="navbar">
-    <a href="#" class="nav-logo">AY_</a>
+    <a href="#" class="nav-logo">
+      <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="var(--accent)" />
+            <stop offset="100%" stop-color="var(--accent2)" />
+          </linearGradient>
+        </defs>
+        <polygon points="50,8 86,29 86,71 50,92 14,71 14,29" fill="none" stroke="url(#logo-grad)" stroke-width="4.5" stroke-linejoin="round" />
+        <polyline points="32,70 50,34 68,70" fill="none" stroke="var(--accent)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+        <line x1="40" y1="56" x2="60" y2="56" stroke="var(--accent)" stroke-width="5" stroke-linecap="round" />
+        <polyline points="38,34 50,54 50,78" fill="none" stroke="var(--accent2)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <span>AY_</span>
+    </a>
     <div class="nav-links">
       <a href="#services">Services</a>
       <a href="#projects">Projects</a>
